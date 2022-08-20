@@ -1,16 +1,24 @@
 # method that takes a string and an array of words as arguments
-# returning an object populated by occurence of substrings
-# from array
+# returning a hash counting number of times each substring (if found) was found
+# in 
 
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
+text = "Howdy partner, sit down! How's it going?"
+
 def substrings(text, dictionary_array)
+  
+  # creates an array of lowercase string
+  text_array = text.downcase.split()
+
   dictionary_array.reduce(Hash.new(0)) do |accumulator, value|
-      if text.include?(value)
-        accumulator[value] +=1
+    text_array.each do |element|
+      if element.include?(value)
+        accumulator[value] += 1
       end
-      accumulator
     end
+    accumulator
+  end
 end
 
-puts substrings("below", dictionary)
+puts substrings("Howdy partner, sit down! How's it going?", dictionary)
